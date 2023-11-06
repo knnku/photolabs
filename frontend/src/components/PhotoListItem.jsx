@@ -12,13 +12,13 @@ const PhotoListItem = ({
 }) => {
   /* Insert React */
   return (
-    <div id={photoId}>
-      <img src={imageSource} />
-      <footer>
-        <img src={profile} />
+    <div key={photoId} className="photo-list__item">
+      <img src={imageSource} className="photo-list__image" />
+      <footer className="photo-list__user-details photo-list__user-info">
+        <img src={profile} className="photo-list__user-profile" />
         <div>
-          <h3>{userNgame}</h3>
-          <p>{`${city}, ${country}`}</p>
+          <p>{userName}</p>
+          <p className="photo-list__user-location">{`${city}, ${country}`}</p>
         </div>
       </footer>
     </div>
