@@ -1,7 +1,6 @@
-# react-photolabs
-The PhotoLabs project for the Web Development React course programming.
-
 # Photolabs
+
+PhotoLabs project to build an SPA app with the use of react components, props and hooks.
 
 ## Setup
 
