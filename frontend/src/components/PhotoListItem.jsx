@@ -1,5 +1,6 @@
 import React from "react";
 
+import PhotoFavButton from "./PhotoFavButton";
 import "../styles/PhotoListItem.scss";
 
 const PhotoListItem = ({
@@ -13,6 +14,7 @@ const PhotoListItem = ({
   /* Insert React */
   return (
     <div key={photoId} className="photo-list__item">
+      <PhotoFavButton />
       <img src={imageSource} className="photo-list__image" />
       <footer className="photo-list__user-details photo-list__user-info">
         <img src={profile} className="photo-list__user-profile" />
