@@ -19,8 +19,8 @@ const PhotoListItem = ({
       <footer className="photo-list__user-details photo-list__user-info">
         <img src={profile} className="photo-list__user-profile" />
         <div>
-          <p>{userName}</p>
-          <p className="photo-list__user-location">{`${city}, ${country}`}</p>
+          <name>{userName}</name>
+          <div className="photo-list__user-location">{`${city}, ${country}`}</div>
         </div>
       </footer>
     </div>
