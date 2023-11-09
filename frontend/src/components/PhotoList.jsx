@@ -59,7 +59,7 @@ const sampleDataForPhotoList = [
 
 const PhotoList = () => {
   return (
-    <ul className="photo-list photo-list:after">
+    <ul className="photo-list">
       {sampleDataForPhotoList.map((photo) => {
         return (
           <PhotoListItem
