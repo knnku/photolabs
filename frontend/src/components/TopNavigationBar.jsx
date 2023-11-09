@@ -4,6 +4,8 @@ import "../styles/TopNavigationBar.scss";
 import TopicList from "components/TopicList";
 import FavBadge from "./FavBadge";
 
+
+
 const TopNavigation = () => {
   return (
     <div className="top-nav-bar">
