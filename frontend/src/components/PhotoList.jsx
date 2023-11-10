@@ -58,7 +58,7 @@ import PhotoListItem from "./PhotoListItem";
 //   },
 // ];
 
-const PhotoList = () => {
+const PhotoList = ({setFavedPhotos}) => {
   return (
     <ul className="photo-list">
       {photos.map((photo) => {
@@ -70,6 +70,7 @@ const PhotoList = () => {
             imageSource={photo.urls.regular}
             userName={photo.user.username}
             profile={photo.user.profile}
+            setFavedPhotos={setFavedPhotos}
           />
         );
       })}
