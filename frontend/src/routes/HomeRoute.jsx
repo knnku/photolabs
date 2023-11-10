@@ -17,7 +17,7 @@ const HomeRoute = () => {
         <PhotoListItem key={index} />
       ))} */}
 
-      <PhotoList setFavedPhotos={setFavedPhotos}/>
+      <PhotoList setFavedPhotos={setFavedPhotos} favedPhotos={favedPhotos} />
     </div>
   );
 };

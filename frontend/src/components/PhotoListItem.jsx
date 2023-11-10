@@ -10,7 +10,7 @@ const PhotoListItem = ({
   imageSource,
   userName,
   profile,
-  setFavedPhotos
+  setFavedPhotos,
 }) => {
   /* Insert React */
   return (

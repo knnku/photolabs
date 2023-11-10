@@ -7,13 +7,12 @@ import "../styles/FavBadge.scss";
 const selected = true;
 
 const FavBadge = ({ isFavPhotoExist, favedPhotos }) => {
-
   console.log("Current Faves:", favedPhotos);
 
   return (
     <div className="fav-badge">
       <FavIcon displayAlert={!!isFavPhotoExist} selected={selected} />
-      <span>{favedPhotos}</span>
+      {favedPhotos ? <span>{favedPhotos}</span> : <></>}
     </div>
   );
 };
