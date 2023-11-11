@@ -16,7 +16,17 @@ const PhotoListItem = ({
   /* Insert React */
 
   const handlePhotoItemClick = () => {
-    togglePhotoModal();
+    const photoData = {
+      photoId: photoId,
+      city: city,
+      country: country,
+      imageSource: imageSource,
+      userName: userName,
+      profile: profile
+    };
+    togglePhotoModal(photoData);
+
+    console.log(`Clicked photo #: ${photoId}`);
   };
   return (
     <div key={photoId} className="photo-list__item">
@@ -24,7 +34,7 @@ const PhotoListItem = ({
       <img
         src={imageSource}
         className="photo-list__image"
-        onClick={handlePhotoItemClick}
+        onClick={() => handlePhotoItemClick()}
       />
       <footer className="photo-list__user-details photo-list__user-info">
         <img src={profile} className="photo-list__user-profile" />

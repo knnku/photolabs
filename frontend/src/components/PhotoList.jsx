@@ -67,6 +67,7 @@ const PhotoList = ({ togglePhotoModal, setFavedPhotos }) => {
           <PhotoListItem
             togglePhotoModal={togglePhotoModal}
             key={photo.id}
+            photoId={photo.id}
             city={photo.location.city}
             country={photo.location.country}
             imageSource={photo.urls.regular}
