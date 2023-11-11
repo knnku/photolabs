@@ -15,7 +15,12 @@ const PhotoFavButton = ({ setFavedPhotos }) => {
 
   const handleButtonClick = () => {
     // Call the setFavedPhotos function to update the state
-    setFavedPhotos((prevCount) => prevCount + 1);
+    
+    // Add or minus fav count
+    selected
+      ? setFavedPhotos((prevCount) => prevCount - 1)
+      : setFavedPhotos((prevCount) => prevCount + 1);
+  
     favPhoto();
   };
 

@@ -19,13 +19,13 @@ const PhotoListItem = ({
     togglePhotoModal();
   };
   return (
-    <div
-      onClick={handlePhotoItemClick}
-      key={photoId}
-      className="photo-list__item"
-    >
+    <div key={photoId} className="photo-list__item">
       <PhotoFavButton setFavedPhotos={setFavedPhotos} />
-      <img src={imageSource} className="photo-list__image" />
+      <img
+        src={imageSource}
+        className="photo-list__image"
+        onClick={handlePhotoItemClick}
+      />
       <footer className="photo-list__user-details photo-list__user-info">
         <img src={profile} className="photo-list__user-profile" />
         <div>

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./App.scss";
 import HomeRoute from "routes/HomeRoute";
 import PhotoDetailsModal from "routes/PhotoDetailsModal";
+import photos from "./mocks/photos.js";
 
 
 
@@ -17,7 +18,7 @@ const App = () => {
     <div className="App">
       <HomeRoute togglePhotoModal={togglePhotoModal} />
 
-      {photoModal ? <PhotoDetailsModal /> : <></>}
+      {photoModal && <PhotoDetailsModal togglePhotoModal={togglePhotoModal} />}
     </div>
   );
 };
