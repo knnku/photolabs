@@ -58,12 +58,14 @@ import PhotoListItem from "./PhotoListItem";
 //   },
 // ];
 
-const PhotoList = ({setFavedPhotos}) => {
+const PhotoList = ({ togglePhotoModal, setFavedPhotos }) => {
+
   return (
     <ul className="photo-list">
       {photos.map((photo) => {
         return (
           <PhotoListItem
+            togglePhotoModal={togglePhotoModal}
             key={photo.id}
             city={photo.location.city}
             country={photo.location.country}
