@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "../styles/HomeRoute.scss";
 
@@ -6,8 +6,8 @@ import "../styles/HomeRoute.scss";
 import TopNavigationBar from "../components/TopNavigationBar";
 import PhotoList from "../components/PhotoList";
 
-const HomeRoute = ({ togglePhotoModal }) => {
-  const [favedPhotos, setFavedPhotos] = useState(0);
+const HomeRoute = ({ togglePhotoModal, favedPhotos, setFavedPhotos }) => {
+
 
   return (
     <div className="home-route">
