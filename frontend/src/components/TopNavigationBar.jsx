@@ -5,13 +5,15 @@ import TopicList from "components/TopicList";
 import FavBadge from "./FavBadge";
 
 const TopNavigation = ({ favedPhotos }) => {
+  console.log("Faved Photos: ", favedPhotos);
 
   return (
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo">PhotoLabs</span>
       <TopicList />
       <span>
-        <FavBadge isFavPhotoExist={favedPhotos} favedPhotos={favedPhotos} />
+        {/* Fav badge will display a notif on icon if favedPhotos state length is > 0*/}
+        <FavBadge isFavPhotoExist={favedPhotos.length} />
       </span>
     </div>
   );

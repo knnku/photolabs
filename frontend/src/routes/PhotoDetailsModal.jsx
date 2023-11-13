@@ -26,7 +26,11 @@ const PhotoDetailsModal = ({
         />
       </button>
       <div className="photo-details-modal__images">
-        <PhotoFavButton setFavedPhotos={setFavedPhotos} />
+        <PhotoFavButton
+          photoId={photoData.photoId}
+          favedPhotos={favedPhotos}
+          setFavedPhotos={setFavedPhotos}
+        />
         <img
           className="photo-details-modal__image"
           src={photoData.imageSource}
@@ -37,7 +41,7 @@ const PhotoDetailsModal = ({
             className="photo-details-modal__photographer-profile"
           />
           <div className="photo-details-modal__photographer-info">
-            <name>{photoData.userName}</name>
+            <span>{photoData.userName}</span>
             <div className="photo-details-modal__photographer-location">{`${photoData.city}, ${photoData.country}`}</div>
           </div>
         </header>
@@ -45,9 +49,8 @@ const PhotoDetailsModal = ({
       <h2 className="photo-details-modal__images">Similar Photos</h2>
       <div className="photo-details-modal__top-bar">
         <PhotoList
-          togglePhotoModal={togglePhotoModal}
-          setFavedPhotos={setFavedPhotos}
           favedPhotos={favedPhotos}
+          setFavedPhotos={setFavedPhotos}
         />
       </div>
     </div>

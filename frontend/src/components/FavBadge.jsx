@@ -6,13 +6,10 @@ import "../styles/FavBadge.scss";
 //Hotwire to make red
 const selected = true;
 
-const FavBadge = ({ isFavPhotoExist, favedPhotos }) => {
-  console.log("Current Faves:", favedPhotos);
-
+const FavBadge = ({ isFavPhotoExist }) => {
   return (
     <div className="fav-badge">
       <FavIcon displayAlert={!!isFavPhotoExist} selected={selected} />
-      {favedPhotos ? <span>{favedPhotos}</span> : <></>}
     </div>
   );
 };

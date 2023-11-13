@@ -10,27 +10,28 @@ const PhotoListItem = ({
   imageSource,
   userName,
   profile,
-  setFavedPhotos,
   togglePhotoModal,
+  favedPhotos,
+  setFavedPhotos,
 }) => {
-  /* Insert React */
+  // const [selected, setSelected] = useState(false);
 
   const handlePhotoItemClick = () => {
     const photoData = {
-      photoId: photoId,
-      city: city,
-      country: country,
-      imageSource: imageSource,
-      userName: userName,
-      profile: profile
+      photoId,
+      city,
+      country,
+      imageSource,
+      userName,
+      profile,
     };
     togglePhotoModal(photoData);
 
-    console.log(`Clicked photo #: ${photoId}`);
+    console.log(`Clicked on photo #: ${photoId}`);
   };
   return (
-    <div key={photoId} className="photo-list__item">
-      <PhotoFavButton setFavedPhotos={setFavedPhotos} />
+    <div key={photoId} id={photoId} className="photo-list__item">
+      <PhotoFavButton photoId={photoId} favedPhotos={favedPhotos} setFavedPhotos={setFavedPhotos} />
       <img
         src={imageSource}
         className="photo-list__image"
@@ -39,7 +40,7 @@ const PhotoListItem = ({
       <footer className="photo-list__user-details photo-list__user-info">
         <img src={profile} className="photo-list__user-profile" />
         <div>
-          <name>{userName}</name>
+          <span>{userName}</span>
           <div className="photo-list__user-location">{`${city}, ${country}`}</div>
         </div>
       </footer>

@@ -1,36 +1,32 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 
 import FavIcon from "./FavIcon";
 import "../styles/PhotoFavButton.scss";
 
-const PhotoFavButton = ({ setFavedPhotos }) => {
-  const [selected, setSelected] = useState(false);
-
-  const favPhoto = useCallback(() => {
-    console.log("Clicked fav button!");
-    setSelected(!selected);
-
-    // Toggle the displayAlert state
-  }, [selected, setSelected]);
+const PhotoFavButton = ({ favedPhotos, setFavedPhotos, photoId }) => {
+  const isFaved = favedPhotos.includes(photoId);
 
   const handleButtonClick = () => {
-    // Call the setFavedPhotos function to update the state
-    
-    // Add or minus fav count
-    selected
-      ? setFavedPhotos((prevCount) => prevCount - 1)
-      : setFavedPhotos((prevCount) => prevCount + 1);
-  
     favPhoto();
   };
 
+  const favPhoto = useCallback(() => {
+    console.log("Clicked fav button on photo#", photoId);
+
+    // Toggle the photoId in the favePhotos array
+    setFavedPhotos((prevPhotos) => {
+      if (prevPhotos.includes(photoId)) {
+        return prevPhotos.filter((id) => id !== photoId);
+      } else {
+        return [...prevPhotos, photoId];
+      }
+    });
+  }, [setFavedPhotos, photoId]);
+
   return (
-    <div
-      onClick={handleButtonClick}
-      className="photo-list__fav-icon"
-    >
+    <div onClick={handleButtonClick} className="photo-list__fav-icon">
       <div className="photo-list__fav-icon-svg">
-        <FavIcon selected={selected} />
+        <FavIcon selected={isFaved} />
       </div>
     </div>
   );
