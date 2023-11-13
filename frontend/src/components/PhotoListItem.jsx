@@ -14,8 +14,6 @@ const PhotoListItem = ({
   favedPhotos,
   setFavedPhotos,
 }) => {
-  // const [selected, setSelected] = useState(false);
-
   const handlePhotoItemClick = () => {
     const photoData = {
       photoId,
@@ -31,7 +29,11 @@ const PhotoListItem = ({
   };
   return (
     <div key={photoId} id={photoId} className="photo-list__item">
-      <PhotoFavButton photoId={photoId} favedPhotos={favedPhotos} setFavedPhotos={setFavedPhotos} />
+      <PhotoFavButton
+        photoId={photoId}
+        favedPhotos={favedPhotos}
+        setFavedPhotos={setFavedPhotos}
+      />
       <img
         src={imageSource}
         className="photo-list__image"

@@ -13,7 +13,7 @@ const PhotoFavButton = ({ favedPhotos, setFavedPhotos, photoId }) => {
   const favPhoto = useCallback(() => {
     console.log("Clicked fav button on photo#", photoId);
 
-    // Toggle the photoId in the favePhotos array
+    // Add photo using Id if does not exist in array
     setFavedPhotos((prevPhotos) => {
       if (prevPhotos.includes(photoId)) {
         return prevPhotos.filter((id) => id !== photoId);
@@ -21,7 +21,7 @@ const PhotoFavButton = ({ favedPhotos, setFavedPhotos, photoId }) => {
         return [...prevPhotos, photoId];
       }
     });
-  }, [setFavedPhotos, photoId]);
+  }, [favedPhotos, setFavedPhotos, photoId]);
 
   return (
     <div onClick={handleButtonClick} className="photo-list__fav-icon">
