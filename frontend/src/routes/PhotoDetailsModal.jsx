@@ -25,17 +25,19 @@ const PhotoDetailsModal = ({
           onClick={handleClickPhotoModal}
         />
       </button>
-      <div className="photo-details-modal__images">
-        <PhotoFavButton
-          photoId={photoData.photoId}
-          favedPhotos={favedPhotos}
-          setFavedPhotos={setFavedPhotos}
-        />
-        <img
-          className="photo-details-modal__image"
-          src={photoData.imageSource}
-        />
-        <header className="photo-details-modal__header photo-details-modal__photographer-details ">
+      <div className="photo-details-modal__top-bar ">
+        <div className="photo-details-modal__images">
+          <PhotoFavButton
+            photoId={photoData.photoId}
+            favedPhotos={favedPhotos}
+            setFavedPhotos={setFavedPhotos}
+          />
+          <img
+            className="photo-details-modal__image"
+            src={photoData.imageSource}
+          />
+        </div>
+        <footer className="photo-details-modal__header photo-details-modal__photographer-details ">
           <img
             src={photoData.profile}
             className="photo-details-modal__photographer-profile"
@@ -44,10 +46,10 @@ const PhotoDetailsModal = ({
             <span>{photoData.userName}</span>
             <div className="photo-details-modal__photographer-location">{`${photoData.city}, ${photoData.country}`}</div>
           </div>
-        </header>
+        </footer>
       </div>
       <h2 className="photo-details-modal__images">Similar Photos</h2>
-      <div className="photo-details-modal__top-bar">
+      <div>
         <PhotoList favedPhotos={favedPhotos} setFavedPhotos={setFavedPhotos} />
       </div>
     </div>

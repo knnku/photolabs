@@ -1,7 +1,7 @@
 import React from "react";
 
-import PhotoFavButton from "./PhotoFavButton";
 import "../styles/PhotoListItem.scss";
+import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = ({
   photoId,
