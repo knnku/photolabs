@@ -1,23 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./App.scss";
 import HomeRoute from "routes/HomeRoute";
 import PhotoDetailsModal from "routes/PhotoDetailsModal";
+import useApplicationData from "hooks/useApplicationData";
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  //Global state array to contain favedphotos
-  const [favedPhotos, setFavedPhotos] = useState([]);
 
-  // Modal display state
-  const [photoModal, showPhotoModal] = useState(false);
 
-  // State to handle modalData from child when displayed
-  const [modalData, passModalData] = useState(null);
+  const {
+    useFavePhotos,
+    useToggleModal,
+    useModalData
+  } = useApplicationData();
 
-  // Modal Handler: show modal via state and receive data from photolist child
-  const togglePhotoModal = (modalData) => {
-    showPhotoModal(!photoModal);
+  const { favedPhotos, toggleFave } = useFavePhotos();
+  const { photoModal, togglePhotoModal } = useToggleModal();
+  const { photoData, passModalData } = useModalData();
+
+  const showPhotoModal = (modalData) => {
+    togglePhotoModal();
 
     passModalData(modalData);
   };
@@ -25,17 +28,16 @@ const App = () => {
   return (
     <div className="App">
       <HomeRoute
-        togglePhotoModal={togglePhotoModal}
+        showPhotoModal={showPhotoModal}
         favedPhotos={favedPhotos}
-        setFavedPhotos={setFavedPhotos}
+        toggleFave={toggleFave}
       />
 
       {photoModal && (
         <PhotoDetailsModal
-          togglePhotoModal={togglePhotoModal}
-          photoData={modalData}
+          photoData={photoData}
           favedPhotos={favedPhotos}
-          setFavedPhotos={setFavedPhotos}
+          toggleFave={toggleFave}
         />
       )}
     </div>

@@ -10,9 +10,9 @@ const PhotoListItem = ({
   imageSource,
   userName,
   profile,
-  togglePhotoModal,
+  showPhotoModal,
   favedPhotos,
-  setFavedPhotos,
+  toggleFave,
 }) => {
   const handlePhotoItemClick = () => {
     const photoData = {
@@ -23,7 +23,7 @@ const PhotoListItem = ({
       userName,
       profile,
     };
-    togglePhotoModal(photoData);
+    showPhotoModal(photoData);
 
     console.log(`Clicked on photo #: ${photoId}`);
   };
@@ -32,7 +32,7 @@ const PhotoListItem = ({
       <PhotoFavButton
         photoId={photoId}
         favedPhotos={favedPhotos}
-        setFavedPhotos={setFavedPhotos}
+        toggleFave={toggleFave}
       />
       <img
         src={imageSource}
