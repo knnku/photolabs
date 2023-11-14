@@ -6,13 +6,13 @@ import "../styles/HomeRoute.scss";
 import TopNavigationBar from "../components/TopNavigationBar";
 import PhotoList from "../components/PhotoList";
 
-const HomeRoute = ({ showPhotoModal, favedPhotos, toggleFave }) => {
+const HomeRoute = ({ toggleModal, favedPhotos, toggleFave }) => {
   return (
     <div className="home-route">
       <TopNavigationBar favedPhotos={favedPhotos} />
 
       <PhotoList
-        showPhotoModal={showPhotoModal}
+        toggleModal={toggleModal}
         favedPhotos={favedPhotos}
         toggleFave={toggleFave}
       />

@@ -19,7 +19,7 @@ const App = () => {
   const { photoModal, togglePhotoModal } = useToggleModal();
   const { photoData, passModalData } = useModalData();
 
-  const showPhotoModal = (modalData) => {
+  const toggleModal = (modalData) => {
     togglePhotoModal();
 
     passModalData(modalData);
@@ -28,13 +28,14 @@ const App = () => {
   return (
     <div className="App">
       <HomeRoute
-        showPhotoModal={showPhotoModal}
+        toggleModal={toggleModal}
         favedPhotos={favedPhotos}
         toggleFave={toggleFave}
       />
 
       {photoModal && (
         <PhotoDetailsModal
+          toggleModal={toggleModal}
           photoData={photoData}
           favedPhotos={favedPhotos}
           toggleFave={toggleFave}

@@ -10,7 +10,7 @@ const PhotoListItem = ({
   imageSource,
   userName,
   profile,
-  showPhotoModal,
+  toggleModal,
   favedPhotos,
   toggleFave,
 }) => {
@@ -23,7 +23,7 @@ const PhotoListItem = ({
       userName,
       profile,
     };
-    showPhotoModal(photoData);
+    toggleModal(photoData);
 
     console.log(`Clicked on photo #: ${photoId}`);
   };

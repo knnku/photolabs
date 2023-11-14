@@ -4,7 +4,7 @@ import "../styles/PhotoList.scss";
 import photos from "../mocks/photos.js";
 import PhotoListItem from "./PhotoListItem";
 
-const PhotoList = ({ showPhotoModal, favedPhotos, toggleFave }) => {
+const PhotoList = ({ toggleModal, favedPhotos, toggleFave }) => {
   return (
     <ul className="photo-list">
       {photos.map((photo) => {
@@ -17,7 +17,7 @@ const PhotoList = ({ showPhotoModal, favedPhotos, toggleFave }) => {
             imageSource={photo.urls.regular}
             userName={photo.user.username}
             profile={photo.user.profile}
-            showPhotoModal={showPhotoModal}
+            toggleModal={toggleModal}
             favedPhotos={favedPhotos}
             toggleFave={toggleFave}
           />

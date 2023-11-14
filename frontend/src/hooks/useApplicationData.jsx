@@ -3,7 +3,8 @@ import { useState } from "react";
 //Global state array to contain favedphotos
 
 const useApplicationData = () => {
-  // Favephotos handler
+  
+  // Hook to handle faved photos
   const useFavePhotos = () => {
     const [favedPhotos, setFavedPhotos] = useState([]);
 
@@ -23,7 +24,7 @@ const useApplicationData = () => {
     };
   };
 
-  // Modal display state function handler
+  // Hook to handle modal display state
   const useToggleModal = () => {
     const [photoModal, showPhotoModal] = useState(false);
 
@@ -38,6 +39,7 @@ const useApplicationData = () => {
     };
   };
 
+  // Hook to handle passed data state to photomodal
   const useModalData = () => {
     const [photoData, passModalData] = useState(null);
 

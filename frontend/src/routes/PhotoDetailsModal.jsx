@@ -6,14 +6,14 @@ import PhotoFavButton from "components/PhotoFavButton";
 import PhotoList from "components/PhotoList";
 
 const PhotoDetailsModal = ({
-  togglePhotoModal,
+  toggleModal,
   photoData,
   favedPhotos,
-  setFavedPhotos,
+  toggleFave,
 }) => {
   //Close photomodal by running same function reversing state/boolean
   const handleClickPhotoModal = () => {
-    togglePhotoModal();
+    toggleModal();
   };
 
   return (
@@ -30,7 +30,7 @@ const PhotoDetailsModal = ({
           <PhotoFavButton
             photoId={photoData.photoId}
             favedPhotos={favedPhotos}
-            setFavedPhotos={setFavedPhotos}
+            toggleFave={toggleFave}
           />
           <img
             className="photo-details-modal__image"
@@ -50,7 +50,7 @@ const PhotoDetailsModal = ({
       </div>
       <h2 className="photo-details-modal__images">Similar Photos</h2>
       <div>
-        <PhotoList favedPhotos={favedPhotos} setFavedPhotos={setFavedPhotos} />
+        <PhotoList favedPhotos={favedPhotos} toggleFave={toggleFave} />
       </div>
     </div>
   );
