@@ -50,7 +50,7 @@ const PhotoDetailsModal = ({
       </div>
       <h2 className="photo-details-modal__images">Similar Photos</h2>
       <div>
-        <PhotoList favedPhotos={favedPhotos} favePhoto={favePhoto} />
+        <PhotoList similarPhotos={modalData.similarPhotos}  photoId={modalData.photoId} favedPhotos={favedPhotos} favePhoto={favePhoto} />
       </div>
     </div>
   );

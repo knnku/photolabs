@@ -10,6 +10,7 @@ const PhotoListItem = ({
   imageSource,
   userName,
   profile,
+  similarPhotos,
   toggleModal,
   favedPhotos,
   favePhoto,
@@ -22,6 +23,7 @@ const PhotoListItem = ({
       imageSource,
       userName,
       profile,
+      similarPhotos
     };
     toggleModal(photoData);
 

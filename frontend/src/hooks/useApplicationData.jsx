@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react";
+import { useReducer } from "react";
 
 export const ACTIONS = {
   FAV_PHOTO: "FAV_PHOTO",
