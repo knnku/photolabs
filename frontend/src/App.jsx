@@ -10,19 +10,21 @@ const App = () => {
 
 
   const {
-    useFavePhotos,
-    useToggleModal,
-    useModalData
+    favedPhotos,
+    favePhoto,
+    photoModal,
+    togglePhotoModal,
+    modalData,
+    passModalData
   } = useApplicationData();
 
-  const { favedPhotos, toggleFave } = useFavePhotos();
-  const { photoModal, togglePhotoModal } = useToggleModal();
-  const { photoData, passModalData } = useModalData();
+  // const { photoModal, togglePhotoModal } = useToggleModal();
+  // const { photoData, passModalData } = useModalData();
 
-  const toggleModal = (modalData) => {
+  const toggleModal = (photoData) => {
     togglePhotoModal();
 
-    passModalData(modalData);
+    passModalData(photoData);
   };
 
   return (
@@ -30,15 +32,15 @@ const App = () => {
       <HomeRoute
         toggleModal={toggleModal}
         favedPhotos={favedPhotos}
-        toggleFave={toggleFave}
+        favePhoto={favePhoto}
       />
 
       {photoModal && (
         <PhotoDetailsModal
           toggleModal={toggleModal}
-          photoData={photoData}
+          modalData={modalData}
           favedPhotos={favedPhotos}
-          toggleFave={toggleFave}
+          favePhoto={favePhoto}
         />
       )}
     </div>

@@ -12,7 +12,7 @@ const PhotoListItem = ({
   profile,
   toggleModal,
   favedPhotos,
-  toggleFave,
+  favePhoto,
 }) => {
   const handlePhotoItemClick = () => {
     const photoData = {
@@ -32,7 +32,7 @@ const PhotoListItem = ({
       <PhotoFavButton
         photoId={photoId}
         favedPhotos={favedPhotos}
-        toggleFave={toggleFave}
+        favePhoto={favePhoto}
       />
       <img
         src={imageSource}

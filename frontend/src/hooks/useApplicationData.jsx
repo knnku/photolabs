@@ -1,58 +1,72 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 
-//Global state array to contain favedphotos
+export const ACTIONS = {
+  FAV_PHOTO: "FAV_PHOTO",
+  SHOW_MODAL: "SHOW_MODAL",
+  PASS_MODAL_DATA: "PASS_MODAL_DATA",
+};
+
+const initialStates = {
+  favedPhotos: [],
+  photoModal: false,
+  modalData: null,
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+  case "FAV_PHOTO":
+    if (state.favedPhotos.includes(action.payload)) {
+      return {
+        ...state,
+        favedPhotos: state.favedPhotos.filter((id) => id !== action.payload),
+      };
+    } else {
+      return {
+        ...state,
+        favedPhotos: [...state.favedPhotos, action.payload],
+      };
+    }
+  case "SHOW_MODAL":
+    return {
+      ...state,
+      photoModal: !state.photoModal,
+    };
+  case "PASS_MODAL_DATA":
+    return {
+      ...state,
+      modalData: action.payload,
+    };
+  default:
+    return state;
+  }
+};
 
 const useApplicationData = () => {
-  
-  // Hook to handle faved photos
-  const useFavePhotos = () => {
-    const [favedPhotos, setFavedPhotos] = useState([]);
+  const [state, dispatch] = useReducer(reducer, initialStates);
 
-    const toggleFave = (photoId) => {
-      setFavedPhotos((prevFaves) => {
-        if (prevFaves.includes(photoId)) {
-          return prevFaves.filter((id) => id !== photoId);
-        } else {
-          return [...prevFaves, photoId];
-        }
-      });
-    };
-
-    return {
-      favedPhotos,
-      toggleFave,
-    };
+  // Function to handle faved photos
+  const favePhoto = (photoId) => {
+    dispatch({ type: ACTIONS.FAV_PHOTO, payload: photoId });
   };
 
-  // Hook to handle modal display state
-  const useToggleModal = () => {
-    const [photoModal, showPhotoModal] = useState(false);
-
+  // Function to handle modal display state
+  const togglePhotoModal = () => {
     // Modal Handler show modal via state
-    const togglePhotoModal = () => {
-      showPhotoModal(!photoModal);
-    };
-
-    return {
-      photoModal,
-      togglePhotoModal,
-    };
+    dispatch({ type: ACTIONS.SHOW_MODAL });
   };
 
   // Hook to handle passed data state to photomodal
-  const useModalData = () => {
-    const [photoData, passModalData] = useState(null);
-
-    return {
-      photoData,
-      passModalData,
-    };
+  const passModalData = (photoData) => {
+    dispatch({ type: ACTIONS.PASS_MODAL_DATA, payload: photoData });
   };
 
   return {
-    useFavePhotos,
-    useToggleModal,
-    useModalData,
+    favedPhotos: state.favedPhotos,
+    favePhoto,
+    photoModal: state.photoModal,
+    togglePhotoModal,
+    modalData: state.modalData,
+    passModalData
   };
 };
 

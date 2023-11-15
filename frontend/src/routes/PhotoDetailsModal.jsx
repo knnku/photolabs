@@ -6,10 +6,10 @@ import PhotoFavButton from "components/PhotoFavButton";
 import PhotoList from "components/PhotoList";
 
 const PhotoDetailsModal = ({
-  toggleModal,
-  photoData,
   favedPhotos,
-  toggleFave,
+  favePhoto,
+  toggleModal,
+  modalData,
 }) => {
   //Close photomodal by running same function reversing state/boolean
   const handleClickPhotoModal = () => {
@@ -28,29 +28,29 @@ const PhotoDetailsModal = ({
       <div className="photo-details-modal__top-bar ">
         <div className="photo-details-modal__images">
           <PhotoFavButton
-            photoId={photoData.photoId}
+            photoId={modalData.photoId}
             favedPhotos={favedPhotos}
-            toggleFave={toggleFave}
+            favePhoto={favePhoto}
           />
           <img
             className="photo-details-modal__image"
-            src={photoData.imageSource}
+            src={modalData.imageSource}
           />
         </div>
         <footer className="photo-details-modal__header photo-details-modal__photographer-details ">
           <img
-            src={photoData.profile}
+            src={modalData.profile}
             className="photo-details-modal__photographer-profile"
           />
           <div className="photo-details-modal__photographer-info">
-            <span>{photoData.userName}</span>
-            <div className="photo-details-modal__photographer-location">{`${photoData.city}, ${photoData.country}`}</div>
+            <span>{modalData.userName}</span>
+            <div className="photo-details-modal__photographer-location">{`${modalData.city}, ${modalData.country}`}</div>
           </div>
         </footer>
       </div>
       <h2 className="photo-details-modal__images">Similar Photos</h2>
       <div>
-        <PhotoList favedPhotos={favedPhotos} toggleFave={toggleFave} />
+        <PhotoList favedPhotos={favedPhotos} favePhoto={favePhoto} />
       </div>
     </div>
   );
