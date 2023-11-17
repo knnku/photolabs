@@ -10,7 +10,8 @@ const App = () => {
 
   const {
     photos,
-    // topics,
+    topics,
+    updatePhotosByTopicId,
     favedPhotos,
     favePhoto,
     photoModal,
@@ -29,6 +30,8 @@ const App = () => {
   return (
     <div className="App">
       <HomeRoute
+        updatePhotosByTopicId={updatePhotosByTopicId}
+        topics={topics}
         photos={photos}
         toggleModal={toggleModal}
         favedPhotos={favedPhotos}

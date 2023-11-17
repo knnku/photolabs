@@ -1,3 +1,4 @@
+import topics from "mocks/topics";
 import { useReducer, useEffect } from "react";
 
 export const ACTIONS = {
@@ -6,11 +7,13 @@ export const ACTIONS = {
   PASS_MODAL_DATA: "PASS_MODAL_DATA",
   SET_PHOTOS_DATA: "SET_PHOTOS_DATA",
   SET_TOPICS_DATA: "SET_TOPICS_DATA",
+  GET_PHOTOS_BY_TOPIC: "GET_PHOTOS_BY_TOPIC",
 };
 
 const initialStates = {
   photos: [],
   topics: [],
+  topicId: 0,
   favedPhotos: [],
   photoModal: false,
   modalData: null,
@@ -45,6 +48,16 @@ const reducer = (state, action) => {
       ...state,
       photos: action.payload,
     };
+  case "SET_TOPICS_DATA":
+    return {
+      ...state,
+      topics: action.payload,
+    };
+  case "GET_PHOTOS_BY_TOPIC":
+    return {
+      ...state,
+      topicId: action.payload,
+    };
   default:
     return state;
   }
@@ -54,12 +67,35 @@ const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialStates);
 
   useEffect(() => {
-    fetch("http://localhost:8001/api/photos").then((res) => {
+    const fetchPhotos = () => fetch(`/api/photos`).then((res) => {
       res.json().then((data) => {
         dispatch({ type: ACTIONS.SET_PHOTOS_DATA, payload: data });
       });
     });
-  }, []);
+
+    const fetchTopics = () =>
+      fetch(`/api/topics`).then((res) => {
+        res.json().then((data) => {
+          dispatch({ type: ACTIONS.SET_TOPICS_DATA, payload: data });
+        });
+      });
+    
+    const fetchPhotosByTopicId = (topicId) => {
+      fetch(`/api/topics/photos/${topicId}`).then((res) => {
+        res.json().then((data) => {
+          dispatch({ type: ACTIONS.SET_PHOTOS_DATA, payload: data });
+          console.log("New topic!");
+        });
+      });
+    };
+
+    fetchPhotos();
+    fetchTopics();
+
+    if (state.topicId !== 0) {
+      fetchPhotosByTopicId(state.topicId);
+    }
+  }, [state.topicId]);
 
   // Function to handle faved photos
   const favePhoto = (photoId) => {
@@ -77,8 +113,14 @@ const useApplicationData = () => {
     dispatch({ type: ACTIONS.PASS_MODAL_DATA, payload: photoData });
   };
 
+  const updatePhotosByTopicId = (topicId) => {
+    dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPIC, payload: topicId });
+  };
+
   return {
     photos: state.photos,
+    topics: state.topics,
+    updatePhotosByTopicId,
     favedPhotos: state.favedPhotos,
     favePhoto,
     photoModal: state.photoModal,

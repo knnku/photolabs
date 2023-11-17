@@ -5,10 +5,15 @@ import "../styles/HomeRoute.scss";
 import TopNavigationBar from "../components/TopNavigationBar";
 import PhotoList from "../components/PhotoList";
 
-const HomeRoute = ({ photos, toggleModal, favedPhotos, favePhoto }) => {
+const HomeRoute = ({ updatePhotosByTopicId, topics, photos, toggleModal, favedPhotos, favePhoto }) => {
+  
   return (
     <div className="home-route">
-      <TopNavigationBar favedPhotos={favedPhotos} />
+      <TopNavigationBar
+        favedPhotos={favedPhotos}
+        topics={topics}
+        updatePhotosByTopicId={updatePhotosByTopicId}
+      />
 
       <PhotoList
         photos={photos}
