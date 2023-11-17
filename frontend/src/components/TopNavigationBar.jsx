@@ -5,7 +5,6 @@ import TopicList from "components/TopicList";
 import FavBadge from "./FavBadge";
 
 const TopNavigation = ({ favedPhotos }) => {
-  console.log("Faved Photos: ", favedPhotos);
 
   return (
     <div className="top-nav-bar">

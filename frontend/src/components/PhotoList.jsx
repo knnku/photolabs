@@ -1,10 +1,9 @@
 import React from "react";
 
 import "../styles/PhotoList.scss";
-import photos from "../mocks/photos.js";
 import PhotoListItem from "./PhotoListItem";
 
-const PhotoList = ({ toggleModal, favedPhotos, favePhoto, similarPhotos }) => {
+const PhotoList = ({ photos, toggleModal, favedPhotos, favePhoto, similarPhotos }) => {
 
   const photoArray = similarPhotos ? Object.values(similarPhotos) : photos;
 
@@ -20,7 +19,7 @@ const PhotoList = ({ toggleModal, favedPhotos, favePhoto, similarPhotos }) => {
             imageSource={photo.urls.regular}
             userName={photo.user.username}
             profile={photo.user.profile}
-            similarPhotos={photo.similarPhotos}
+            similarPhotos={photo.similar_photos}
             toggleModal={toggleModal}
             favedPhotos={favedPhotos}
             favePhoto={favePhoto}

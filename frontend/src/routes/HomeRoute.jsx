@@ -2,16 +2,16 @@ import React from "react";
 
 import "../styles/HomeRoute.scss";
 
-// import PhotoListItem from "./components/PhotoListItem";
 import TopNavigationBar from "../components/TopNavigationBar";
 import PhotoList from "../components/PhotoList";
 
-const HomeRoute = ({ toggleModal, favedPhotos, favePhoto }) => {
+const HomeRoute = ({ photos, toggleModal, favedPhotos, favePhoto }) => {
   return (
     <div className="home-route">
       <TopNavigationBar favedPhotos={favedPhotos} />
 
       <PhotoList
+        photos={photos}
         toggleModal={toggleModal}
         favedPhotos={favedPhotos}
         favePhoto={favePhoto}

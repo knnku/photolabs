@@ -8,8 +8,9 @@ import useApplicationData from "hooks/useApplicationData";
 // Note: Rendering a single component to build components in isolation
 const App = () => {
 
-
   const {
+    photos,
+    // topics,
     favedPhotos,
     favePhoto,
     photoModal,
@@ -17,19 +18,18 @@ const App = () => {
     modalData,
     passModalData
   } = useApplicationData();
-
-  // const { photoModal, togglePhotoModal } = useToggleModal();
-  // const { photoData, passModalData } = useModalData();
-
+  
   const toggleModal = (photoData) => {
     togglePhotoModal();
-
+    
+    //Function handler to extract data from child list item to pass for modal
     passModalData(photoData);
   };
 
   return (
     <div className="App">
       <HomeRoute
+        photos={photos}
         toggleModal={toggleModal}
         favedPhotos={favedPhotos}
         favePhoto={favePhoto}

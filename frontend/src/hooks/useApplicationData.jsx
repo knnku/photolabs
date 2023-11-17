@@ -1,12 +1,16 @@
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 
 export const ACTIONS = {
   FAV_PHOTO: "FAV_PHOTO",
   SHOW_MODAL: "SHOW_MODAL",
   PASS_MODAL_DATA: "PASS_MODAL_DATA",
+  SET_PHOTOS_DATA: "SET_PHOTOS_DATA",
+  SET_TOPICS_DATA: "SET_TOPICS_DATA",
 };
 
 const initialStates = {
+  photos: [],
+  topics: [],
   favedPhotos: [],
   photoModal: false,
   modalData: null,
@@ -36,6 +40,11 @@ const reducer = (state, action) => {
       ...state,
       modalData: action.payload,
     };
+  case "SET_PHOTOS_DATA":
+    return {
+      ...state,
+      photos: action.payload,
+    };
   default:
     return state;
   }
@@ -43,6 +52,14 @@ const reducer = (state, action) => {
 
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialStates);
+
+  useEffect(() => {
+    fetch("http://localhost:8001/api/photos").then((res) => {
+      res.json().then((data) => {
+        dispatch({ type: ACTIONS.SET_PHOTOS_DATA, payload: data });
+      });
+    });
+  }, []);
 
   // Function to handle faved photos
   const favePhoto = (photoId) => {
@@ -61,12 +78,13 @@ const useApplicationData = () => {
   };
 
   return {
+    photos: state.photos,
     favedPhotos: state.favedPhotos,
     favePhoto,
     photoModal: state.photoModal,
     togglePhotoModal,
     modalData: state.modalData,
-    passModalData
+    passModalData,
   };
 };
 
