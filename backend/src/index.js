@@ -1,28 +1,9 @@
-// Server API
-const PORT = 8080;
-const app = require('express')();   // npm i express
-const cors = require('cors');       // npm i cors
-const uniqid = require('uniqid');   // npm i uniqid
-const morgan = require('morgan');   // npm i morgan
+const PORT = process.env.PORT || 8001;
+const ENV = require("./environment");
 
-app.use(morgan('dev'));
-app.use(cors());
+const app = require("./application")(ENV);
+const server = require("http").Server(app);
 
-
-const data = [
-    {id: uniqid(), task: 'buy milk', done: false},
-    {id: uniqid(), task: 'wash dishes', done: false},
-    {id: uniqid(), task: 'clean up', done: true },
-];
-
-
-app.get("/todos", (req, res) => {
-    res.json(data);
-})
-
-app.post("/todos/:id/delete", (req, res) => {
-
-})
-
-
-app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
+server.listen(PORT, () => {
+  console.log(`Listening on port ${PORT} in ${ENV} mode.`);
+});
