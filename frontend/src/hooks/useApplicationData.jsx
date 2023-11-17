@@ -1,4 +1,3 @@
-import topics from "mocks/topics";
 import { useReducer, useEffect } from "react";
 
 export const ACTIONS = {
