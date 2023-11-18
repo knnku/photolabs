@@ -11,7 +11,7 @@ const PhotoDetailsModal = ({
   toggleModal,
   modalData,
 }) => {
-  //Close photomodal by running same function reversing state/boolean
+  //Close photomodal by calling modal state handler
   const handleClickPhotoModal = () => {
     toggleModal();
   };

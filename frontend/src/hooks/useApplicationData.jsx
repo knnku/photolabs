@@ -66,52 +66,64 @@ const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialStates);
 
   useEffect(() => {
-    const fetchPhotos = () => fetch(`/api/photos`).then((res) => {
-      res.json().then((data) => {
-        dispatch({ type: ACTIONS.SET_PHOTOS_DATA, payload: data });
+    //Fetch photos handler
+    const fetchPhotos = () =>
+      fetch(`/api/photos`).then((res) => {
+        res
+          .json()
+          .then((data) => {
+            dispatch({ type: ACTIONS.SET_PHOTOS_DATA, payload: data });
+          })
+          .catch((err) => console.error(err));
       });
-    });
 
+    //Fetch topics handler
     const fetchTopics = () =>
       fetch(`/api/topics`).then((res) => {
-        res.json().then((data) => {
-          dispatch({ type: ACTIONS.SET_TOPICS_DATA, payload: data });
-        });
+        res
+          .json()
+          .then((data) => {
+            dispatch({ type: ACTIONS.SET_TOPICS_DATA, payload: data });
+          })
+          .catch((err) => console.error(err));
       });
     
+    //Fetch photos by topics and change photos state
     const fetchPhotosByTopicId = (topicId) => {
       fetch(`/api/topics/photos/${topicId}`).then((res) => {
         res.json().then((data) => {
           dispatch({ type: ACTIONS.SET_PHOTOS_DATA, payload: data });
-          console.log("New topic!");
-        });
+        }).catch(err => console.error(err));
       });
     };
 
+    //Calling data fetch handlers
     fetchPhotos();
     fetchTopics();
 
+    //Fetch photos handler called if state has changed from default
     if (state.topicId !== 0) {
       fetchPhotosByTopicId(state.topicId);
     }
   }, [state.topicId]);
 
-  // Function to handle faved photos
+  //Function to handle faved photos
   const favePhoto = (photoId) => {
     dispatch({ type: ACTIONS.FAV_PHOTO, payload: photoId });
   };
 
-  // Function to handle modal display state
+  //Function to handle modal display state
   const togglePhotoModal = () => {
     // Modal Handler show modal via state
     dispatch({ type: ACTIONS.SHOW_MODAL });
   };
 
-  // Hook to handle passed data state to photomodal
+  //Hook to handle passed data from photo item state to photomodal
   const passModalData = (photoData) => {
     dispatch({ type: ACTIONS.PASS_MODAL_DATA, payload: photoData });
   };
 
+  //Handler for photos
   const updatePhotosByTopicId = (topicId) => {
     dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPIC, payload: topicId });
   };

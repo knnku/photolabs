@@ -4,11 +4,11 @@ import FavIcon from "./FavIcon";
 import "../styles/PhotoFavButton.scss";
 
 const PhotoFavButton = ({ favedPhotos, favePhoto, photoId }) => {
+  //Using a var to track favedphotos for heart icon display
   const isFaved = favedPhotos.includes(photoId);
 
   const favPhoto = useCallback(() => {
-    console.log("Clicked fav button on photo#", photoId);
-
+    //Call fave photo handler and set state
     favePhoto(photoId);
   }, [favedPhotos, favePhoto, photoId]);
 

@@ -4,7 +4,7 @@ import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
 
 const PhotoList = ({ photos, toggleModal, favedPhotos, favePhoto, similarPhotos }) => {
-
+  //If similar photos is passed from child using toggle modal, it will instead use that for modal instead of photos
   const photoArray = similarPhotos ? Object.values(similarPhotos) : photos;
 
   return (

@@ -15,7 +15,9 @@ const PhotoListItem = ({
   favedPhotos,
   favePhoto,
 }) => {
+  
   const handlePhotoItemClick = () => {
+    //Gather photo data to send to modal
     const photoData = {
       photoId,
       city,
@@ -25,10 +27,11 @@ const PhotoListItem = ({
       profile,
       similarPhotos
     };
-    toggleModal(photoData);
 
-    console.log(`Clicked on photo #: ${photoId}`);
+    //Call modal state handler and pass data from photoitem
+    toggleModal(photoData);
   };
+  
   return (
     <div key={photoId} id={photoId} className="photo-list__item">
       <PhotoFavButton
