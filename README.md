@@ -1,10 +1,14 @@
 # Photolabs
 
-PhotoLabs project to build an SPA app with the use of react components, props and hooks.
+PhotoLabs is a project to build a simple single-paged fullstack app with the use of Node, Express, React and Postgres. 
+
+The backend express server serves as a dabatase to make API calls to while the front end is composed of react
+components to render data, hooks to set state and manage/fetch data and props to pass data around the application.
+
 
 ## Setup
 
-Install dependencies with `npm install` in each respective `/frontend` and `/backend`.
+Install dependencies with `npm install` in each respective `/frontend` and `/backend` directories.
 
 ## [Frontend] Running Webpack Development Server
 
