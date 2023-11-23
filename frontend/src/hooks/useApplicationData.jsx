@@ -65,47 +65,52 @@ const reducer = (state, action) => {
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, initialStates);
 
-  useEffect(() => {
-    //Fetch photos handler
-    const fetchPhotos = () =>
-      fetch(`/api/photos`).then((res) => {
-        res
-          .json()
-          .then((data) => {
-            dispatch({ type: ACTIONS.SET_PHOTOS_DATA, payload: data });
-          })
-          .catch((err) => console.error(err));
-      });
-
-    //Fetch topics handler
-    const fetchTopics = () =>
-      fetch(`/api/topics`).then((res) => {
-        res
-          .json()
-          .then((data) => {
-            dispatch({ type: ACTIONS.SET_TOPICS_DATA, payload: data });
-          })
-          .catch((err) => console.error(err));
-      });
-    
-    //Fetch photos by topics and change photos state
-    const fetchPhotosByTopicId = (topicId) => {
-      fetch(`/api/topics/photos/${topicId}`).then((res) => {
-        res.json().then((data) => {
+  //Fetch photos handler
+  const fetchPhotos = () =>
+    fetch(`/api/photos`).then((res) => {
+      res
+        .json()
+        .then((data) => {
           dispatch({ type: ACTIONS.SET_PHOTOS_DATA, payload: data });
-        }).catch(err => console.error(err));
-      });
-    };
+        })
+        .catch((err) => console.error(err));
+    });
 
-    //Calling data fetch handlers
-    fetchPhotos();
-    fetchTopics();
+  //Fetch topics handler
+  const fetchTopics = () =>
+    fetch(`/api/topics`).then((res) => {
+      res
+        .json()
+        .then((data) => {
+          dispatch({ type: ACTIONS.SET_TOPICS_DATA, payload: data });
+        })
+        .catch((err) => console.error(err));
+    });
+
+  useEffect(() => {
+    //Calling data fetch handlers if topic state is default
+    if (state.topicId === 0) {
+      fetchPhotos();
+      fetchTopics();
+    }
 
     //Fetch photos handler called if state has changed from default
     if (state.topicId !== 0) {
       fetchPhotosByTopicId(state.topicId);
     }
   }, [state.topicId]);
+
+  //Fetch photos by topics and change photos state
+  const fetchPhotosByTopicId = (topicId) => {
+    fetch(`/api/topics/photos/${topicId}`).then((res) => {
+      res
+        .json()
+        .then((data) => {
+          dispatch({ type: ACTIONS.SET_PHOTOS_DATA, payload: data });
+        })
+        .catch((err) => console.error(err));
+    });
+  };
 
   //Function to handle faved photos
   const favePhoto = (photoId) => {
