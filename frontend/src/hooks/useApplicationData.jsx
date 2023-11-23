@@ -88,24 +88,25 @@ const useApplicationData = () => {
     });
 
   useEffect(() => {
-    //Calling data fetch handlers if topic state is default
+    //Calling data fetch handlers if topic state is default === pageload
     if (state.topicId === 0) {
       fetchPhotos();
       fetchTopics();
     }
 
-    //Fetch photos handler called if state has changed from default
+    //Fetch photos handler called if topic state has changed from default
     if (state.topicId !== 0) {
       fetchPhotosByTopicId(state.topicId);
     }
   }, [state.topicId]);
 
-  //Fetch photos by topics and change photos state
+  //Fetch photos by topics when state of topics has changed
   const fetchPhotosByTopicId = (topicId) => {
     fetch(`/api/topics/photos/${topicId}`).then((res) => {
       res
         .json()
         .then((data) => {
+          // Set photos state to specific photos from API by topic
           dispatch({ type: ACTIONS.SET_PHOTOS_DATA, payload: data });
         })
         .catch((err) => console.error(err));
